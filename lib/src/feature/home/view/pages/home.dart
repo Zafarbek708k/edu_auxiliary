@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:edu_auxiliary/src/feature/home/view/widgets/home_free_cource_widget.dart';
 
 import '../../../../core/constants/all_library.dart';
 import '../widgets/home_banner_widget.dart';
+import '../widgets/home_lesson_widget.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -26,34 +26,16 @@ class _HomeState extends State<Home> {
       body: ListView(
         children: [
           const HomeBanner(title: "Oylik To'lovlarni Kechiktirmang!"),
-          CustomTextWidget("\t\t\t Today", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+          CustomTextWidget("\t\t\t Today\n", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
           HomeLessonWidget(
-            imageUrl: "",
-            lessonName: "Math",
-            startTime: "11;00",
-            endTime: "12:30",
+              lessons: lesson,
+              firstTap: () {debugPrint("item 1");},
+              secondTap: () {debugPrint("item 2");},
+              thirdTap: () {debugPrint("item 3");},
           ),
-          CustomTextWidget("\t\t\t Free Courses", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
-            child: Container(
-              height: 220,
-              width: double.infinity,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: context.appTheme.secondary)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    CustomTextWidget("Lesson Image", textColor: context.appTheme.secondary),
-                    CustomTextWidget("Lesson Title", textColor: context.appTheme.secondary),
-                    CustomTextWidget("Url Link Button", textColor: context.appTheme.secondary),
-                    CustomTextWidget("Time of video", textColor: context.appTheme.secondary),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          CustomTextWidget("\t\t\t Mock Exams", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+          CustomTextWidget("\t\t\t Free Courses\n", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+          FreeCoursesButton(courses: freeCourses, onPressed: (){}),
+          CustomTextWidget("\n\t\t\t Mock Exams", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
             child: Container(
@@ -89,65 +71,30 @@ class _HomeState extends State<Home> {
   }
 }
 
-class HomeLessonWidget extends StatelessWidget {
-  const HomeLessonWidget(
-      {super.key,
-      this.firstTap,
-      this.secondTap,
-      this.thirdTap,
-      required this.imageUrl,
-      required this.lessonName,
-      required this.startTime,
-      required this.endTime});
+List<Lesson> lesson = [
+  Lesson(imageUrl: "imageUrl", lessonName: "Math", startTime: "09:00", endTime: "10:30"),
+  Lesson(imageUrl: "imageUrl", lessonName: "Physics", startTime: "11:00", endTime: "12:30"),
+  Lesson(imageUrl: "imageUrl", lessonName: "Math", startTime: "13:00", endTime: "14:30")
+];
 
-  final VoidCallback? firstTap, secondTap, thirdTap;
-  final String imageUrl, lessonName, startTime, endTime;
+final List<FreeCourse> freeCourses = [
+  FreeCourse(
+    imageUrl: 'https://example.com/image1.jpg',
+    title: 'Introduction to Flutter',
+    videoTime: '10:00 mins',
+  ),
+  FreeCourse(
+    imageUrl: 'https://example.com/image2.jpg',
+    title: 'Advanced Dart',
+    videoTime: '20:00 mins',
+  ),
+  FreeCourse(
+    imageUrl: 'https://example.com/image3.jpg',
+    title: 'UI Design Basics',
+    videoTime: '15:00 mins',
+  ),
+];
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 180,
-      child: ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        children: [
-          ...List.generate(3, (index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 280,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: context.appTheme.secondary)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 100,
-                      width: double.infinity,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-                        child: CachedNetworkImage(
-                          imageUrl: "imageUrl",
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Image.asset(
-                            width: 120,
-                            height: 120,
-                            fit: BoxFit.cover,
-                            "assets/images/bcg_placeholder.png",
-                          ),
-                        ),
-                      ),
-                    ),
-                    CustomTextWidget("\t\t\t Lesson: $lessonName", textColor: context.appTheme.secondary),
-                    CustomTextWidget("\t\t\t Time: $startTime / $endTime", textColor: context.appTheme.secondary),
-                  ],
-                ),
-              ),
-            );
-          })
-        ],
-      ),
-    );
-  }
-}
+
+
+
