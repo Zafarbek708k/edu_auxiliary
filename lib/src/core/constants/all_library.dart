@@ -30,6 +30,10 @@ export "package:edu_auxiliary/src/core/widgets/blur_widget.dart";
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:firebase_crashlytics/firebase_crashlytics.dart';
+export 'package:edu_auxiliary/src/feature/home/view/widgets/home_banner_widget.dart';
+export 'package:edu_auxiliary/src/feature/home/view/widgets/home_free_cource_widget.dart';
+export 'package:edu_auxiliary/src/feature/home/view/widgets/home_lesson_widget.dart';
+
 
 
 

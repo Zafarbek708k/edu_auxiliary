@@ -1,4 +1,3 @@
-
 import 'package:edu_auxiliary/src/core/constants/all_library.dart';
 
 class FreeCourse {
@@ -70,29 +69,24 @@ class FreeCoursesButton extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                CustomTextWidget(
                   course.title,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                  textColor: context.appTheme.secondary,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 8),
-                Text(
+                CustomTextWidget(
                   "Time: ${course.videoTime}",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 14,
-                  ),
+                 textColor: context.appTheme.secondary,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
                 ),
                 const SizedBox(height: 8),
-                ElevatedButton(
+                MaterialButton(
+                  shape: StadiumBorder(side: BorderSide(color: context.appTheme.secondary)),
                   onPressed: onPressed,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                  ),
-                  child: const Text('Watch Now'),
+                  child:  CustomTextWidget('Watch Now', textColor: context.appTheme.secondary),
                 ),
               ],
             ),

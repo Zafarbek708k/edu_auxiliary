@@ -1,8 +1,7 @@
-import 'package:edu_auxiliary/src/feature/home/view/widgets/home_free_cource_widget.dart';
 
+import 'dart:developer';
+import 'package:edu_auxiliary/src/feature/home/view/widgets/home_exam_widget.dart';
 import '../../../../core/constants/all_library.dart';
-import '../widgets/home_banner_widget.dart';
-import '../widgets/home_lesson_widget.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,6 +18,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: context.appTheme.primary,
         centerTitle: true,
+        forceMaterialTransparency: true,
         title: CustomTextWidget("Home", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold, fontSize: 16),
         iconTheme: IconThemeData(color: context.appTheme.secondary),
         bottom: PreferredSize(preferredSize: const Size(double.infinity, 2), child: Divider(color: context.appTheme.secondary)),
@@ -36,32 +36,22 @@ class _HomeState extends State<Home> {
           CustomTextWidget("\t\t\t Free Courses\n", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
           FreeCoursesButton(courses: freeCourses, onPressed: (){}),
           CustomTextWidget("\n\t\t\t Mock Exams", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
-            child: Container(
-              height: 220,
-              width: double.infinity,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: context.appTheme.secondary)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    CustomTextWidget("Circle avatar Title name", textColor: context.appTheme.secondary),
-                    CustomTextWidget("Test Count", textColor: context.appTheme.secondary),
-                  ],
-                ),
-              ),
-            ),
+          ExamItem(
+            mockExams: mockExams,
+            onPressed: () {
+              // Define what happens when download icon is tapped
+              log('Download tapped');
+            },
           ),
           CustomTextWidget("\t\t\t Social Accounts", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0),
+           Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CircleAvatar(radius: 35, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")),
-                CircleAvatar(radius: 55, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")),
-                CircleAvatar(radius: 35, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")),
+                InkWell(child: const CircleAvatar(radius: 35, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")), onTap: (){}),
+                InkWell(child: const CircleAvatar(radius: 55, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")), onTap: (){}),
+                InkWell(child: const CircleAvatar(radius: 35, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")), onTap: (){}),
               ],
             ),
           )
@@ -72,9 +62,26 @@ class _HomeState extends State<Home> {
 }
 
 List<Lesson> lesson = [
-  Lesson(imageUrl: "imageUrl", lessonName: "Math", startTime: "09:00", endTime: "10:30"),
-  Lesson(imageUrl: "imageUrl", lessonName: "Physics", startTime: "11:00", endTime: "12:30"),
-  Lesson(imageUrl: "imageUrl", lessonName: "Math", startTime: "13:00", endTime: "14:30")
+  Lesson(imageUrl: "https://t3.ftcdn.net/jpg/05/51/43/56/360_F_551435602_v0rxhHEIgbQNWozIjcgJOR2Nmp1SINMV.jpg", lessonName: "Math", startTime: "09:00", endTime: "10:30"),
+  Lesson(imageUrl: "https://cdn-icons-png.flaticon.com/512/212/212818.png", lessonName: "Physics", startTime: "11:00", endTime: "12:30"),
+  Lesson(imageUrl: "https://png.pngtree.com/png-clipart/20190117/ourmid/pngtree-student-chemistry-class-experiment-test-tube-png-image_433993.jpg", lessonName: "Chemistry", startTime: "13:00", endTime: "14:30")
+];
+final List<Exam> mockExams = [
+  Exam(
+    title: 'Math Exam',
+    imageUrl: 'https://t3.ftcdn.net/jpg/05/51/43/56/360_F_551435602_v0rxhHEIgbQNWozIjcgJOR2Nmp1SINMV.jpg',
+    count: 20,
+  ),
+  Exam(
+    title: 'Physics Exam',
+    imageUrl: 'https://t4.ftcdn.net/jpg/04/93/02/45/360_F_493024561_TV2foPQyfx7xOfo1VSJnKaQqzm0L3cUR.jpg',
+    count: 15,
+  ),
+  Exam(
+    title: 'Chemistry Exam',
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/5332/5332677.png',
+    count: 18,
+  ),
 ];
 
 final List<FreeCourse> freeCourses = [

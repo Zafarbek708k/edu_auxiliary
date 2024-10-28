@@ -10,7 +10,7 @@ class Inbox extends StatefulWidget {
 class _InboxState extends State<Inbox> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: context.appTheme.primary,
       appBar: AppBar(
         backgroundColor: context.appTheme.primary,
@@ -19,7 +19,11 @@ class _InboxState extends State<Inbox> {
         iconTheme: IconThemeData(color: context.appTheme.secondary),
         bottom: PreferredSize(preferredSize: const Size(double.infinity, 2), child: Divider(color: context.appTheme.secondary)),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){}, child: Icon(Icons.group_outlined, color: context.appTheme.secondary)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.lightBlue,
+        child: Icon(Icons.group_outlined, color: context.appTheme.secondary),
+      ),
     );
   }
 }

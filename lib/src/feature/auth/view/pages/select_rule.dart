@@ -35,7 +35,7 @@ class _SelectRuleState extends State<SelectRule> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Spacer(flex: 1),
-                      CustomTextWidget("Who are you?", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+                      const CustomTextWidget("Who are you?", textColor: Colors.white, fontWeight: FontWeight.bold),
                       const Spacer(flex: 2),
                       MainButton(
                         onPressed: () async {
@@ -48,6 +48,7 @@ class _SelectRuleState extends State<SelectRule> {
                           );
                         },
                         title: "Teacher",
+                        txtColor: Colors.white,
                       ),
                       const SizedBox(height: 10),
                       MainButton(
@@ -61,6 +62,7 @@ class _SelectRuleState extends State<SelectRule> {
                           );
                         },
                         title: "Student",
+                        txtColor: Colors.white,
                       ),
                       const SizedBox(height: 10),
                       MainButton(
@@ -72,6 +74,7 @@ class _SelectRuleState extends State<SelectRule> {
                           });
                         },
                         title: "Delete data",
+                        txtColor: Colors.white,
                       ),
                       const Spacer(flex: 2)
                     ],
