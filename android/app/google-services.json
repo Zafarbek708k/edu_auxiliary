@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362444736306",
+    "project_id": "edu-auxiliary",
+    "storage_bucket": "edu-auxiliary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362444736306:android:d5757731bb32ca7112f92b",
+        "android_client_info": {
+          "package_name": "com.example.edu_auxiliary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIk_wBoZBZoBXVywgwiq_TQKfinh1__8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
