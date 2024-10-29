@@ -5,6 +5,7 @@ final class AppRouteName {
   static const String splash = "/splashPage";
   static const String welcomePage = "/welcome";
   static const String selectRule = "/select-rule";
+  static const String authGate = "/auth-gate";
 
   static const String login = "/login";
   static const String register = "register";

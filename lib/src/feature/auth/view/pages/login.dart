@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:edu_auxiliary/src/core/constants/context_extension.dart';
-import 'package:edu_auxiliary/src/core/routes/app_route_name.dart';
-import 'package:edu_auxiliary/src/core/widgets/text_widget.dart';
+import 'dart:developer';
 
+import 'package:edu_auxiliary/src/core/server/firebase/firebase_auth.dart';
+
+import '../../../../core/constants/all_library.dart';
 import '../../../../core/storage/sheared_preferens.dart';
-import '../widgets/auth_main_button.dart';
-import '../widgets/auth_main_textfield.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -44,6 +41,31 @@ class _LoginState extends State<Login> {
       if (result2 != null) {
         title = result2;
         setState(() {});
+      }
+    }
+  }
+
+  Future<void> login() async {
+    log("login function is working");
+    String email = ctrEmail.text;
+    String pass = ctrPassword.text;
+    if (email.isEmpty || email.length < 2 || !email.contains("@")) {
+      Utils.fireSnackBar("Email is badly formatted", context);
+    } else if (pass.isEmpty || pass.length < 5) {
+      Utils.fireSnackBar("Password should be more than 6 char", context);
+    } else {
+      User? user = await AuthService.loginUser(context, email: email, password: pass);
+      if (user != null) {
+        ctrEmail.clear();
+        ctrPassword.clear();
+        if (mounted) {
+          Utils.fireSnackBar("Successfully registered", context);
+          if (title == "teacher") {
+            context.go(AppRouteName.teacher);
+          } else {
+            context.push(AppRouteName.home);
+          }
+        }
       }
     }
   }
@@ -87,7 +109,7 @@ class _LoginState extends State<Login> {
             AuthMainTextField(controller: ctrPassword, hintText: "Password", isPassword: true),
             const Spacer(flex: 1),
             AuthMainButton(
-              onPressed: () => (title == "teacher") ? context.go(AppRouteName.teacher) : context.push(AppRouteName.home),
+              onPressed: () async => await login(),
               title: "Login",
               backgroundColor: Colors.green,
             ),

@@ -27,6 +27,7 @@ class _AuthMainTextFieldState extends State<AuthMainTextField> {
       controller: widget.controller,
       cursorColor: context.appTheme.secondary,
       obscureText: widget.isPassword ? _obscureText : false, // Only obscure text for passwords
+      style: TextStyle(color: context.appTheme.secondary),
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(

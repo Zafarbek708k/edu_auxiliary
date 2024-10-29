@@ -47,6 +47,15 @@ class _ProfileState extends State<Profile> {
             ),
             CustomTextWidget("Full Name: ", textColor: context.appTheme.secondary),
             CustomTextWidget("Attendance ", textColor: context.appTheme.secondary),
+            MainButton(
+              onPressed: () async {
+                await AuthService.deleteAccount().then((value){
+                  context.go(AppRouteName.splash);
+                });
+              },
+              title: "Deleted account",
+              txtColor: Colors.red,
+            ),
             const SizedBox(height: 200),
             Container(
               decoration: BoxDecoration(
@@ -81,7 +90,6 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
-
             const SizedBox(height: 12),
             CustomTextWidget("Application Version: ", textColor: context.appTheme.secondary),
           ],
@@ -90,4 +98,3 @@ class _ProfileState extends State<Profile> {
     );
   }
 }
-

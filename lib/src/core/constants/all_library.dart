@@ -33,8 +33,10 @@ export 'package:firebase_crashlytics/firebase_crashlytics.dart';
 export 'package:edu_auxiliary/src/feature/home/view/widgets/home_banner_widget.dart';
 export 'package:edu_auxiliary/src/feature/home/view/widgets/home_free_cource_widget.dart';
 export 'package:edu_auxiliary/src/feature/home/view/widgets/home_lesson_widget.dart';
-
-
+export 'package:edu_auxiliary/src/core/server/firebase/utils.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'package:edu_auxiliary/src/core/server/firebase/firebase_auth.dart';
+export 'package:edu_auxiliary/src/core/storage/sheared_preferens.dart';
 
 
 

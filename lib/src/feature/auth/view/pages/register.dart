@@ -1,3 +1,4 @@
+import 'package:edu_auxiliary/src/core/server/firebase/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:edu_auxiliary/src/core/constants/context_extension.dart';
@@ -39,6 +40,32 @@ class _RegisterState extends State<Register> {
         setState(() {});
       }
     }
+  }
+
+  Future<void>register()async{
+    String name = nameCtr.text;
+    String email = emailCtr.text;
+    String pass = passCtr.text;
+    if(name.isEmpty || name.length < 2){
+      Utils.fireSnackBar("Name is not filled", context);
+    }else if(email.isEmpty || email.length < 2 || !email.contains("@")){
+      Utils.fireSnackBar("Email is badly formatted", context);
+    }else if(pass.isEmpty || pass.length < 5){
+      Utils.fireSnackBar("Password should be more than 6 char", context);
+    }else{
+      User? user = await AuthService.registerUser(context, fullName: name, email: email, password: pass);
+      if(user != null){
+        if(mounted){
+          Utils.fireSnackBar("Successfully registered", context);
+          if (title == "teacher") {
+            context.go(AppRouteName.teacher);
+          } else if(title == "student"){
+            context.push(AppRouteName.home);
+          }
+        }
+      }
+    }
+
   }
 
   @override
@@ -97,8 +124,7 @@ class _RegisterState extends State<Register> {
             AuthMainTextField(controller: passCtr, hintText: "Password", isPassword: true),
             const Spacer(flex: 1),
             AuthMainButton(
-              // onPressed: () => context.push(AppRouteName.catalog),
-              onPressed: () {},
+              onPressed: () async => register(),
               title: "Register via Email",
               backgroundColor: Colors.green,
             ),

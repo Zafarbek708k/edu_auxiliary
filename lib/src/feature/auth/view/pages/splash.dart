@@ -13,7 +13,7 @@ class _SplashState extends State<Splash> {
 
   Future<void> init() async {
     _timer = Timer(const Duration(seconds: 4), () {
-      if (mounted) context.go(AppRouteName.selectRule);
+      if (mounted) context.go(AppRouteName.authGate);
     });
   }
 
