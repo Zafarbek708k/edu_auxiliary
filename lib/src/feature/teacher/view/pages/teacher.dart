@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edu_auxiliary/src/core/constants/all_library.dart';
 import 'package:edu_auxiliary/src/feature/widgets/main_button_widget.dart';
 import '../../../../data/entity/article.dart';
@@ -27,31 +29,16 @@ class _TeacherState extends State<Teacher> {
             CustomTextWidget("Rule: Mathematics", textColor: context.appTheme.secondary, fontWeight: FontWeight.w400, fontSize: 12)
           ],
         ),
-        actions: const [CircleAvatar(), SizedBox(width: 10)],
+        actions: [
+          MaterialButton(
+            shape: CircleBorder(side: BorderSide(color: context.appTheme.secondary)),
+            child: const Icon(Icons.person_2_sharp),
+            onPressed: () {
+              context.go("${AppRouteName.teacher}/${AppRouteName.teacherProfile}");
+            },
+          ),
+        ],
         bottom: PreferredSize(preferredSize: const Size(double.infinity, 1), child: Divider(color: context.appTheme.secondary)),
-      ),
-      drawer: Drawer(
-        backgroundColor: context.appTheme.primary,
-        child: Column(
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: context.appTheme.secondary))
-              ),
-              child: SizedBox(
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget("Name: "),
-                    CustomTextWidget("Last Name: "),
-                    CustomTextWidget("Phone Number: "),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
       ),
       body: ListView(
         children: [
@@ -61,7 +48,7 @@ class _TeacherState extends State<Teacher> {
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: context.appTheme.secondary)),
               child: SizedBox(
                 width: double.infinity,
-                height: 220,
+                height: 300,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                   child: Column(
@@ -70,9 +57,25 @@ class _TeacherState extends State<Teacher> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextWidget("Working hours", textColor: context.appTheme.secondary, fontWeight: FontWeight.w400),
-                          DropdownButton(items: const [DropdownMenuItem(child: CustomTextWidget("Monday"))], onChanged: (value) {}),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CustomTextWidget("Monday", textColor: context.appTheme.secondary, fontWeight: FontWeight.w400),
+                              const SizedBox(width: 150, child: Divider(color: Colors.grey, height: 1))
+                            ],
+                          )
                         ],
-                      )
+                      ),
+                      SizedBox(height: 10.h),
+                      ...List.generate(3, (index) {
+                        return Card(color: context.appTheme.primary.withAlpha(1), child: ListTile(
+                          leading: CustomTextWidget("sdf", textColor: context.appTheme.secondary),
+                          title: CustomTextWidget("Math",textColor: context.appTheme.secondary,fontSize: 16, fontWeight: FontWeight.bold),
+                          subtitle: CustomTextWidget("${2*index+1}:00-${2*index+3}:00",textColor: context.appTheme.secondary,fontSize: 12, fontWeight:
+                          FontWeight
+                              .w400),
+                        ));
+                      })
                     ],
                   ),
                 ),

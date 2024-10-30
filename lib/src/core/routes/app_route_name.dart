@@ -20,6 +20,7 @@ final class AppRouteName {
 
   /// teachers
 static const String teacher = "/teacher";
+static const String teacherProfile = "teacher-profile";
 
 
 

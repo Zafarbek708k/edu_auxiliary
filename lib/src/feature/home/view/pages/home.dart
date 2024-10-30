@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 import 'package:edu_auxiliary/src/feature/home/view/widgets/home_exam_widget.dart';
 import '../../../../core/constants/all_library.dart';
@@ -28,13 +27,19 @@ class _HomeState extends State<Home> {
           const HomeBanner(title: "Oylik To'lovlarni Kechiktirmang!"),
           CustomTextWidget("\t\t\t Today\n", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
           HomeLessonWidget(
-              lessons: lesson,
-              firstTap: () {debugPrint("item 1");},
-              secondTap: () {debugPrint("item 2");},
-              thirdTap: () {debugPrint("item 3");},
+            lessons: lesson,
+            firstTap: () {
+              debugPrint("item 1");
+            },
+            secondTap: () {
+              debugPrint("item 2");
+            },
+            thirdTap: () {
+              debugPrint("item 3");
+            },
           ),
           CustomTextWidget("\t\t\t Free Courses\n", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-          FreeCoursesButton(courses: freeCourses, onPressed: (){}),
+          FreeCoursesButton(courses: freeCourses, onPressed: () {}),
           CustomTextWidget("\n\t\t\t Mock Exams", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
           ExamItem(
             mockExams: mockExams,
@@ -44,14 +49,20 @@ class _HomeState extends State<Home> {
             },
           ),
           CustomTextWidget("\t\t\t Social Accounts", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-           Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InkWell(child: const CircleAvatar(radius: 35, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")), onTap: (){}),
-                InkWell(child: const CircleAvatar(radius: 55, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")), onTap: (){}),
-                InkWell(child: const CircleAvatar(radius: 35, backgroundImage: AssetImage("assets/images/edu_helper_logo.png")), onTap: (){}),
+                ...List.generate(
+                  socialAccountImages.length,
+                  (index) {
+                    return InkWell(
+                      child: CircleAvatar(radius: index != 1 ? 35 : 55, backgroundImage: NetworkImage(socialAccountImages[index])),
+                      onTap: () {},
+                    );
+                  },
+                ),
               ],
             ),
           )
@@ -61,10 +72,22 @@ class _HomeState extends State<Home> {
   }
 }
 
+List<String> socialAccountImages = [
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png",
+  "https://goodly.co.in/wp-content/uploads/2023/10/youtube-logo-png-46016.png",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png",
+];
+
 List<Lesson> lesson = [
-  Lesson(imageUrl: "https://t3.ftcdn.net/jpg/05/51/43/56/360_F_551435602_v0rxhHEIgbQNWozIjcgJOR2Nmp1SINMV.jpg", lessonName: "Math", startTime: "09:00", endTime: "10:30"),
+  Lesson(
+      imageUrl: "https://t3.ftcdn.net/jpg/05/51/43/56/360_F_551435602_v0rxhHEIgbQNWozIjcgJOR2Nmp1SINMV.jpg",
+      lessonName: "Math", startTime: "09:00", endTime: "10:30",
+  ),
   Lesson(imageUrl: "https://cdn-icons-png.flaticon.com/512/212/212818.png", lessonName: "Physics", startTime: "11:00", endTime: "12:30"),
-  Lesson(imageUrl: "https://png.pngtree.com/png-clipart/20190117/ourmid/pngtree-student-chemistry-class-experiment-test-tube-png-image_433993.jpg", lessonName: "Chemistry", startTime: "13:00", endTime: "14:30")
+  Lesson(
+      imageUrl: "https://png.pngtree.com/png-clipart/20190117/ourmid/pngtree-student-chemistry-class-experiment-test-tube-png-image_433993.jpg",
+      lessonName: "Chemistry", startTime: "13:00", endTime: "14:30",
+  )
 ];
 final List<Exam> mockExams = [
   Exam(
@@ -80,7 +103,7 @@ final List<Exam> mockExams = [
   Exam(
     title: 'Chemistry Exam',
     imageUrl: 'https://cdn-icons-png.flaticon.com/512/5332/5332677.png',
-    count: 18,
+    count: 18
   ),
 ];
 
@@ -101,7 +124,3 @@ final List<FreeCourse> freeCourses = [
     videoTime: '15:00 mins',
   ),
 ];
-
-
-
-

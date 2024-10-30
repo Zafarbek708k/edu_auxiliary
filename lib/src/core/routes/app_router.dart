@@ -6,6 +6,7 @@ import "package:edu_auxiliary/src/feature/home/view/pages/home.dart";
 import "package:edu_auxiliary/src/feature/inbox/view/pages/inbox.dart";
 import "package:edu_auxiliary/src/feature/profile/view/pages/profile.dart";
 import "package:edu_auxiliary/src/feature/teacher/view/pages/teacher.dart";
+import "package:edu_auxiliary/src/feature/teacher/view/pages/teacher_profile.dart";
 
 import "../../feature/home_navigation.dart";
 
@@ -24,7 +25,9 @@ final class AppRouter {
     routes: [
       GoRoute(path: AppRouteName.splash, builder: (context, state) => const Splash()),
       GoRoute(path: AppRouteName.selectRule, builder: (context, state) => const SelectRule()),
-      GoRoute(path: AppRouteName.teacher, builder: (context, state) => const Teacher()),
+      GoRoute(path: AppRouteName.teacher, builder: (context, state) => const Teacher(), routes: [
+        GoRoute(path: AppRouteName.teacherProfile, builder: (context, state) => const TeacherProfile()),
+      ]),
       GoRoute(path: AppRouteName.authGate, builder: (context, state) => const AuthGate()),
 
       GoRoute(
