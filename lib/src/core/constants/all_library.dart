@@ -37,7 +37,11 @@ export 'package:edu_auxiliary/src/core/server/firebase/utils.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:edu_auxiliary/src/core/server/firebase/firebase_auth.dart';
 export 'package:edu_auxiliary/src/core/storage/sheared_preferens.dart';
-
+export 'package:edu_auxiliary/src/feature/widgets/main_button_widget.dart';
+export 'package:image_picker/image_picker.dart';
+export 'package:table_calendar/table_calendar.dart';
+export 'package:edu_auxiliary/src/core/widgets/app_material_context.dart';
+export 'package:edu_auxiliary/src/feature/profile/view/widgets/profile_button.dart';
 
 
 

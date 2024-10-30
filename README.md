@@ -1,24 +1,7 @@
 # edu_auxiliary
 
 A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-Here's a README template for your **Edu Auxiliary** project. This template provides a detailed overview of your app's features, architecture, and setup instructions.
-
 ---
-
 # Edu Auxiliary
 
 Edu Auxiliary is a Learning Management System (LMS) application designed to provide a seamless online learning experience. Built using Flutter and Riverpod state management, Edu Auxiliary integrates Firebase for real-time database, Cloud Firestore, and Authentication services, with support for localization, theming, and local storage via SharedPreferences. The app is designed with a structured and modular architecture for maintainability and scalability.

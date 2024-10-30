@@ -26,10 +26,8 @@ class _TeacherProfileState extends State<TeacherProfile> {
               CustomTextWidget("Phone Number: "),
               MainButton(
                 onPressed: () async {
-                  await AuthService.deleteAccount().then((value) {
-                    log("go splash");
-                    context.go(AppRouteName.splash);
-                  });
+                  await AuthService.deleteAccount();
+                  context.go(AppRouteName.splash);
                 },
                 title: "Deleted account",
                 txtColor: Colors.red,

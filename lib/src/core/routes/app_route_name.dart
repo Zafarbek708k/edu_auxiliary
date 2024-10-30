@@ -17,6 +17,7 @@ final class AppRouteName {
   static const String profile = "/profile";
 
   /// students
+  static const String subject = "subject";
 
   /// teachers
 static const String teacher = "/teacher";

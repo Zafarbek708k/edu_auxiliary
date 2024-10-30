@@ -30,6 +30,7 @@ class _HomeState extends State<Home> {
             lessons: lesson,
             firstTap: () {
               debugPrint("item 1");
+              context.go("${AppRouteName.home}/${AppRouteName.subject}");
             },
             secondTap: () {
               debugPrint("item 2");
@@ -38,8 +39,10 @@ class _HomeState extends State<Home> {
               debugPrint("item 3");
             },
           ),
-          CustomTextWidget("\t\t\t Free Courses\n", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+          CustomTextWidget("\n\t\t\t Free Courses\n", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
           FreeCoursesButton(courses: freeCourses, onPressed: () {}),
+
+
           CustomTextWidget("\n\t\t\t Mock Exams", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
           ExamItem(
             mockExams: mockExams,
@@ -48,6 +51,8 @@ class _HomeState extends State<Home> {
               log('Download tapped');
             },
           ),
+
+
           CustomTextWidget("\t\t\t Social Accounts", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -74,7 +79,7 @@ class _HomeState extends State<Home> {
 
 List<String> socialAccountImages = [
   "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png",
-  "https://goodly.co.in/wp-content/uploads/2023/10/youtube-logo-png-46016.png",
+  "https://i.pinimg.com/736x/98/ae/15/98ae159aa1bb8b4243fbe1f9e27d1b9f.jpg",
   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png",
 ];
 
@@ -89,7 +94,7 @@ List<Lesson> lesson = [
       lessonName: "Chemistry", startTime: "13:00", endTime: "14:30",
   )
 ];
-final List<Exam> mockExams = [
+List<Exam> mockExams = [
   Exam(
     title: 'Math Exam',
     imageUrl: 'https://t3.ftcdn.net/jpg/05/51/43/56/360_F_551435602_v0rxhHEIgbQNWozIjcgJOR2Nmp1SINMV.jpg',
@@ -107,19 +112,19 @@ final List<Exam> mockExams = [
   ),
 ];
 
-final List<FreeCourse> freeCourses = [
+List<FreeCourse> freeCourses = [
   FreeCourse(
-    imageUrl: 'https://example.com/image1.jpg',
+    imageUrl: 'https://i0.wp.com/opportunitycell.com/wp-content/uploads/2020/11/2020.132_BAM_CA_10-free-short-courses-to-upskill_940x485.jpg?fit=940%2C485&ssl=1',
     title: 'Introduction to Flutter',
     videoTime: '10:00 mins',
   ),
   FreeCourse(
-    imageUrl: 'https://example.com/image2.jpg',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlckPnMak2GeA70ygcKQ3J8j2v0v2gqrtwCw&s',
     title: 'Advanced Dart',
     videoTime: '20:00 mins',
   ),
   FreeCourse(
-    imageUrl: 'https://example.com/image3.jpg',
+    imageUrl: 'https://ascholarship.com/wp-content/uploads/2021/05/Free-Online-Courses-with-Free-Certificates-in-2022-2023-Registration-Open.png',
     title: 'UI Design Basics',
     videoTime: '15:00 mins',
   ),

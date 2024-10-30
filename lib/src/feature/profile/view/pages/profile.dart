@@ -1,6 +1,4 @@
 import 'package:edu_auxiliary/src/core/constants/all_library.dart';
-import 'package:edu_auxiliary/src/feature/profile/view/widgets/profile_button.dart';
-import 'package:edu_auxiliary/src/feature/widgets/main_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class Profile extends StatefulWidget {
@@ -11,6 +9,20 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String name = "";
+  bool theme = false;
+
+  @override
+  void didChangeDependencies() async {
+    await readName();
+    super.didChangeDependencies();
+  }
+
+  Future<void> readName() async {
+    String? result = await StorageService.loadData(key: SharedPrefKey.fullName);
+    if (result != null) setState(() => name = result);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,18 +57,23 @@ class _ProfileState extends State<Profile> {
               width: 100,
               verticalPadding: 10,
             ),
-            CustomTextWidget("Full Name: ", textColor: context.appTheme.secondary),
-            CustomTextWidget("Attendance ", textColor: context.appTheme.secondary),
-            MainButton(
-              onPressed: () async {
-                await AuthService.deleteAccount().then((value){
-                  context.go(AppRouteName.splash);
-                });
-              },
-              title: "Deleted account",
-              txtColor: Colors.red,
+            CustomTextWidget("Full Name: $name", textColor: context.appTheme.secondary),
+            CustomTextWidget("\nAttendance\n", textColor: context.appTheme.secondary),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: context.appTheme.secondary, width: 1)
+              ),
+              child: TableCalendar(
+                firstDay: DateTime.utc(2010, 10, 16),
+                lastDay: DateTime.utc(2030, 3, 14),
+                focusedDay: DateTime.now(),
+              ),
             ),
-            const SizedBox(height: 200),
+            SizedBox(height: 10.h),
+
+            CustomTextWidget("\n Setting",fontWeight: FontWeight.bold,fontSize: 20, textColor: context.appTheme.secondary),
+            SizedBox(height: 5.h),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -82,16 +99,31 @@ class _ProfileState extends State<Profile> {
                         topLine: false,
                         title: "Theme",
                         onTap: () {},
-                        rightWidget: CupertinoSwitch(value: true, onChanged: (value) {}),
+                        rightWidget: CupertinoSwitch(
+                            value: theme,
+                            onChanged: (value) {
+                              themeController.switchTheme();
+                              setState(() => theme = value);
+                            }),
                       ),
-                      ProfileButton(bottomLine: false, topLine: false, title: "Deleted Account", textColor: Colors.red, onTap: () {}),
+                      ProfileButton(
+                        bottomLine: false,
+                        topLine: false,
+                        title: "Deleted Account",
+                        textColor: Colors.red,
+                        onTap: () async {
+                          await AuthService.deleteAccount().then((value) {
+                            context.go(AppRouteName.splash);
+                          });
+                        },
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 12),
-            CustomTextWidget("Application Version: ", textColor: context.appTheme.secondary),
+            CustomTextWidget("Application Version: 1.0.0", textColor: context.appTheme.secondary),
           ],
         ),
       ),

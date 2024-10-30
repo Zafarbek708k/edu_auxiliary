@@ -55,6 +55,7 @@ final class AppRouter {
                 pageBuilder: (context, state) => const NoTransitionPage(child: Home()),
                 routes: [
                   // SubRoutes.categoryDetail,
+                  SubRoutes.subject,
                   GoRoute(
                     parentNavigatorKey: appNavigatorKey,
                     path: AppRouteName.favorite,

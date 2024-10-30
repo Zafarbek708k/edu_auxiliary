@@ -1,4 +1,5 @@
 import "package:edu_auxiliary/src/core/constants/all_library.dart";
+import "package:edu_auxiliary/src/feature/home/view/pages/subject.dart";
 
 
 
@@ -29,13 +30,14 @@ class SubRoutes{
 
 
   /// more sub routes
-  static final GoRoute myKWorks = GoRoute(
+  static final GoRoute subject = GoRoute(
     parentNavigatorKey: appNavigatorKey,
-    path: AppRouteName.myKWorks,
+    path: AppRouteName.subject,
     pageBuilder: (BuildContext context, GoRouterState state) {
-      return const MaterialPage(child: Scaffold());
+      return const MaterialPage(child: Subject());
     },
   );
+
   static final GoRoute viewed = GoRoute(
     parentNavigatorKey: appNavigatorKey,
     path: AppRouteName.viewed,

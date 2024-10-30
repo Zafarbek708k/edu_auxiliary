@@ -57,6 +57,7 @@ class _RegisterState extends State<Register> {
       if(user != null){
         if(mounted){
           Utils.fireSnackBar("Successfully registered", context);
+          StorageService.storeData(key: SharedPrefKey.fullName, value: name);
           if (title == "teacher") {
             context.go(AppRouteName.teacher);
           } else if(title == "student"){
